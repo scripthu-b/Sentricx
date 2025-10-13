@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentricx Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&Dancing+Script&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Dancing Script', cursive;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .main-text-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+    }
+
+    .main-text {
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .main-text.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .fade-in {
+        animation: fadeIn 3s forwards;
+    }
+
+    h1 {
+        font-size: 3rem;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        margin: 0;
+    }
+
+    #text-key h1, #text-discord h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    h3 {
+        font-family: 'Dancing Script', cursive;
+        font-weight: normal;
+        color: #cfd8dc;
+        margin: 10px 0 20px 0;
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-family: 'Dancing Script', cursive;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.3rem;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 114, 255, 0.5);
+    }
+
+    button:active {
+        transform: scale(0.97);
+        box-shadow: 0 2px 10px rgba(0, 114, 255, 0.4);
+    }
+
+    .tab-container {
+        display: flex;
+        background: #333;
+        border-radius: 15px;
+        overflow: hidden;
+        width: 350px;
+        max-width: 90%;
+        height: 50px;
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Dancing Script', cursive;
+        color: #ccc;
+        cursor: pointer;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        z-index: 1;
+        position: relative;
+        text-align: center;
+        padding: 0 10px;
+        font-size: 1.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+
+    .tab.active {
+        color: white;
+    }
+
+    .tab-slider {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        border-radius: 15px;
+        top: 0;
+        left: 0;
+        transition: all 0.3s ease;
+        z-index: 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="main-text-container">
+    <div class="main-text active fade-in" id="text-key">
+        <h1>Sentricx Softwares</h1>
+        <h3>Sentricx Key-Generator:</h3>
+        <button onclick="window.location.href='https://linkvertise.com/1314916/XO3vNeKh1kXz?o=sharing'">Generate Key</button>
+    </div>
+    <div class="main-text" id="text-discord">
+        <h1>Discord Support</h1>
+        <h3>Join our Discord for help and updates</h3>
+        <button onclick="window.open('https://discord.gg/SxZuehqu', '_blank')">Join Discord</button>
+    </div>
+</div>
+
+<div class="tab-container">
+    <div class="tab active" id="tab-key">Key-Gen</div>
+    <div class="tab" id="tab-discord">Discord/Support</div>
+    <div class="tab-slider" id="tab-slider"></div>
+</div>
+
+<script>
+    const tabKey = document.getElementById('tab-key');
+    const tabDiscord = document.getElementById('tab-discord');
+    const slider = document.getElementById('tab-slider');
+    const textKey = document.getElementById('text-key');
+    const textDiscord = document.getElementById('text-discord');
+
+    function switchText(show, hide, direction = 'left') {
+        hide.classList.remove('active');
+        hide.style.opacity = '0';
+        hide.style.transform = direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+
+        setTimeout(() => {
+            show.style.opacity = '1';
+            show.style.transform = 'translateX(0)';
+            show.classList.add('active');
+        }, 300);
+    }
+
+    tabKey.addEventListener('click', () => {
+        if (!tabKey.classList.contains('active')) {
+            tabKey.classList.add('active');
+            tabDiscord.classList.remove('active');
+            slider.style.left = '0%';
+            switchText(textKey, textDiscord, 'right');
+        }
+    });
+
+    tabDiscord.addEventListener('click', () => {
+        if (!tabDiscord.classList.contains('active')) {
+            tabDiscord.classList.add('active');
+            tabKey.classList.remove('active');
+            slider.style.left = '50%';
+            switchText(textDiscord, textKey, 'left');
+        }
+    });
+</script>
+</body>
+</html>
